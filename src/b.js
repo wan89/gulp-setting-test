@@ -3,3 +3,14 @@ function test(){
 
     console.log("hello")
 }
+
+function getData() {
+    var xhr = new XMLHttpRequest();
+    
+    xhr.open('GET', requestURL);
+    xhr.onload = (e) => {
+      console.log(xhr.response, e);
+      console.log(document.getElementById("p").innerHTML = xhr.response);
+    };
+    xhr.send();
+}
