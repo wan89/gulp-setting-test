@@ -2,6 +2,7 @@ var gulp        = require('gulp');
 var concat      = require('gulp-concat');
 var uglify      = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
+var minify = require('gulp-minify');
 
 // Gulp.task() 를 사용해 combine:js 테스크를 정의
 gulp.task('combine:js', function () {

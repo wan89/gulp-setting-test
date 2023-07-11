@@ -1,1 +1,3 @@
-console.log('bsssssss');
+console.log('a.js load');
+
+test();

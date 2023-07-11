@@ -1,1 +1,1 @@
-function test(){}console.log("bsssssss");
+function test(){console.log("hello")}console.log("a.js load"),test();
