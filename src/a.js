@@ -1,3 +1,3 @@
 console.log('a.js load');
-
-test();
+var requestURL = 'https://jsonplaceholder.typicode.com/todos/';
+getData();
