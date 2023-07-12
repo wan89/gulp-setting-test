@@ -2,8 +2,20 @@
     <head>
         <meta charset="UTF-8"/>
         <title>gulp 테스트, xhr구동해보기.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <!-- gulp include  -->
+        @@include('./components/header.html')
+        @@include('./components/var.html', {
+            "name": "wan",
+            "age": 34,
+            "socials": {
+              "fb": "facebook.com/include",
+              "tw": "twitter.com/include"
+            }
+        })
+
         <p>HTML DOM 형식이 아니면, gulp-browser-sync가 구동되지 않음. </p>
         <div id="p"></div>
         <script type="text/javascript" src="scriptAll.js"></script>

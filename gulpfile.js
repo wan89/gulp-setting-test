@@ -2,7 +2,8 @@ var gulp        = require('gulp');
 var concat      = require('gulp-concat');
 var uglify      = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
-var minify = require('gulp-minify');
+// var minify = require('gulp-minify');
+const fileinclude = require('gulp-file-include');
 
 // Gulp.task() 를 사용해 combine:js 테스크를 정의
 gulp.task('combine:js', function () {
@@ -17,7 +18,11 @@ gulp.task('combine:js', function () {
 });
 
 gulp.task('combine:html', function () {
-    return gulp.src('src/*.html')
+    return gulp.src(['src/*.html', 'src/components/*.html'])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
         .pipe(gulp.dest('./dist/'))
         .pipe(browserSync.stream());
 });
@@ -35,7 +40,7 @@ gulp.task('browser-sync', function(){
 gulp.task('watch', gulp.parallel('browser-sync', 'combine:html', 'combine:js', function(done){
     // change in the previous line and the following line
     gulp.watch('src/*.js', gulp.series('combine:js'));
-    gulp.watch('src/*.html', gulp.series('combine:html'));
+    gulp.watch(['src/*.html', 'src/**/*.html'], gulp.series('combine:html'));
     gulp.watch('dist/*.html', browserSync.reload);
 
     done();
