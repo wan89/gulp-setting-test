@@ -1,0 +1,1 @@
+console.log("a.js load");var requestURL="https://jsonplaceholder.typicode.com/todos/";function test(){console.log("hello")}function getData(){var o=new XMLHttpRequest;o.open("GET",requestURL),o.onload=e=>{console.log(o.response,e),console.log(document.getElementById("p").innerHTML=o.response)},o.send()}getData();
