@@ -1,3 +1,5 @@
+
+const del        = require('del');
 const gulp        = require('gulp');
 const concat      = require('gulp-concat');
 const uglify      = require('gulp-uglify');
@@ -5,9 +7,8 @@ const browserSync = require('browser-sync').create();
 const javascriptObfuscator = require('gulp-javascript-obfuscator');
 const fileinclude = require('gulp-file-include');
 const sass = require('gulp-sass')(require('sass'));
-// const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
-
+// const clean = () => del(['build']);
 
 // Gulp.task() 를 사용해 combine:js 테스크를 정의
 gulp.task('combine:js', function () {
@@ -40,6 +41,10 @@ gulp.task('combine:scss', function () {
     .pipe(browserSync.stream());
 });
 
+gulp.task('clean', () => {
+    return del.sync(['./dist']);
+});
+
 // gulp html tasks ()
 gulp.task('combine:html', function () {
     return gulp.src(['src/*.html'])
@@ -48,6 +53,13 @@ gulp.task('combine:html', function () {
             basepath: '@file'
         }))
         .pipe(gulp.dest('./dist/'))
+        .pipe(browserSync.stream());
+});
+
+// gulp assets tasks ()
+gulp.task('combine:assets', function () {
+    return gulp.src(['src/assets/*','src/assets/**/*'])
+        .pipe(gulp.dest('./dist/assets/'))
         .pipe(browserSync.stream());
 });
 
@@ -62,10 +74,11 @@ gulp.task('browser-sync', function(){
     });
 });
 
-gulp.task('watch', gulp.parallel('browser-sync', 'combine:html', 'combine:js', 'combine:scss', function(done){
+gulp.task('watch', gulp.parallel('clean','browser-sync', 'combine:html', 'combine:js', 'combine:scss','combine:assets', function(done){
     // change in the previous line and the following line
     gulp.watch('src/scss/*.scss', gulp.series('combine:scss'));
     gulp.watch('src/**/*.js', gulp.series('combine:js'));
+    gulp.watch(['src/assets/*', 'src/assets/**/*'], gulp.series('combine:assets'));
     gulp.watch(['src/*.html', 'src/**/*.html'], gulp.series('combine:html'));
     gulp.watch('dist/*.html', browserSync.reload);
 

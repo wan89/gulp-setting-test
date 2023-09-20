@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/wan89/xhr_test/issues"
   },
-  "homepage": "https://github.com/wan89/xhr_test#readme"
+  "homepage": "https://github.com/wan89/xhr_test#readme",
+  "dependencies": {
+    "del": "^6.1.0"
+  }
 }
