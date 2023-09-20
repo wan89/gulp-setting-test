@@ -1,5 +1,4 @@
 ## gulp 사용법(init)
--------
   
 ##### gulp 글로벌 설치
 ```
@@ -20,7 +19,6 @@ gulp
 
 
 ## Drectory
---------
 
 gulpfile.js - gulp 환경 세팅 js파일입니다. 입맛대로 변경하세요
 
